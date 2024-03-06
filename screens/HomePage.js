@@ -3,16 +3,32 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import { Picker } from "@react-native-picker/picker";
 
 const HomePage = () => {
   const navigation = useNavigation();
+  const [selectedOption, setSelectedOption] = React.useState('Login');
+
+  React.useEffect(() => {
+    console.log(selectedOption,"0000")
+ 
+  }, [selectedOption])
+  
+ const handleLoginPress = (selectedOption) => {
+    // Perform navigation based on the selected option
+    if (selectedOption === 'eventOrganizer') {
+      navigation.navigate('AdminLogin');
+    } else if (selectedOption === 'Others') {
+      navigation.navigate('Others');
+    }else if(selectedOption==='login'){
+      console.log("login")
+    }
+  };
+  
   return (
     <View style={styles.homePage}>
       <View style={[styles.homePageChild, styles.homePosition]} />
-      <Text style={[styles.eventName, styles.eventNameTypo]}>Event Name</Text>
-      <Text style={[styles.assignedTasks, styles.assignedTasksPosition]}>
-        Assigned tasks
-      </Text>
+
       <View style={[styles.homePageItem, styles.eventNamePosition]} />
       <View style={[styles.homePageInner, styles.homePosition]} />
       <View style={[styles.rectangleView, styles.assignedTasksPosition]} />
@@ -21,11 +37,7 @@ const HomePage = () => {
         contentFit="cover"
         source={require("../assets/bg1.png")}
       />
-      {/* <Image
-        style={styles.rectangleIcon}
-        contentFit="cover"
-        source={require("../assets/Rectangle 3.png")}
-      /> */}
+    
       <Text style={styles.campuseventpro}>CampusEventPro</Text>
       <View style={[styles.homePageChild1, styles.calendarIconPosition]} />
       <Text style={[styles.daysLeft, styles.loginTypo]}>11 Days left</Text>
@@ -38,28 +50,22 @@ const HomePage = () => {
       <Text style={[styles.startDate20012024, styles.festNameTypo]}>
         Start Date: 20-01-2024
       </Text>
-      <TouchableOpacity onPress={()=>{navigation.navigate('CreateFest')}}>
-        <View style={[styles.loginbg]}>
-        <Text style={[styles.login, styles.loginTypo]}>Login</Text>
-      </View>
-      </TouchableOpacity>
 
-      <View style={[styles.loginbg]}>
-        <Text style={[styles.login2, styles.loginTypo]}>Login EVENT HEAD</Text>
-      </View>   
+      <Picker
+        selectedValue={selectedOption}
+        style={[styles.dropdownButton, styles.eventOrganizerPicker]}
+        onValueChange={(itemValue) => {
+          setSelectedOption(itemValue);
+          handleLoginPress(itemValue); // Pass the selected option to handleLoginPress
+        }}
+      >
+        <Picker.Item label="login" value="Login" />
+        <Picker.Item label="eventOrganizer" value="eventOrganizer" />
+        <Picker.Item label="Others" value="Others" />
+        {/* Add other options as needed */}
+      </Picker>
 
-      <View style={[styles.loginbg]}>
-        <Text style={[styles.login3, styles.loginTypo]}>Login event Member</Text>
-      </View> 
 
-      <View style={[styles.loginbg]}>
-        <Text style={[styles.login4, styles.loginTypo]}>Login Commitiee HEAD</Text>
-      </View>   
-      
-      <View style={[styles.loginbg]}>
-        <Text style={[styles.login5, styles.loginTypo]}>Login Commitiee Member</Text>
-      </View>   
-      
     </View>
   );
 };
@@ -75,13 +81,19 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.itimRegular,
     fontSize: FontSize.size_5xl,
   },
+  eventOrganizerPicker: {
+    position: 'absolute',
+    bottom: 0, // Align the Picker at the bottom of the page
+    width: '100%', // Make the Picker full-width
+    backgroundColor: 'white', // Adjust the background color as needed
+  },
   assignedTasksPosition: {
     left: 44,
     display: "none",
     position: "absolute",
   },
-  loginbg:{
-backgroundColor:'#2E367F'
+  loginbg: {
+    backgroundColor: '#2E367F'
   },
   eventNamePosition: {
     left: 48,
@@ -250,36 +262,11 @@ backgroundColor:'#2E367F'
     left: 23,
     width: 146,
   },
-  login: {
-    top: 753,
-    left: 280,
-    color: Color.colorWhite,
-    height: 33,
-  },
-  login2: {
+  button: {
     top: 653,
-    left: 280,
-    color: Color.colorWhite,
-    height: 33,
+    left: 180,
   },
-  login3: {
-    top: 553,
-    left: 280,
-    color: Color.colorWhite,
-    height: 33,
-  },
-  login4: {
-    top: 453,
-    left: 280,
-    color: Color.colorWhite,
-    height: 33,
-  },
-  login5: {
-    top: 353,
-    left: 280,
-    color: Color.colorWhite,
-    height: 33,
-  },
+ 
   homePage: {
     flex: 1,
     width: "100%",

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Button, TextInput } from "react-native";
 import { Image } from "expo-image";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 
@@ -12,62 +12,229 @@ const Organizercommitteaddtask = () => {
         contentFit="cover"
         source={require("../assets/Tasklist-1.png")}
       />
-      <View
-        style={[
-          styles.organizercommitteaddtaskChild,
-          styles.organizercommitteaddtaskShadowBox,
-        ]}
-      />
-      <View
-        style={[
-          styles.organizercommitteaddtaskItem,
-          styles.organizercommitteaddtaskLayout,
-        ]}
-      />
-      <Text style={[styles.taskName, styles.dueDateTypo]}>Task Name:</Text>
-      <Image
-        style={[
-          styles.organizercommitteaddtaskInner,
-          styles.organizercommitteaddtaskLayout,
-        ]}
-        contentFit="cover"
-        source={require("../assets/Rectangle 3.png")}
-      />
-      <Image
-        style={[styles.rectangleIcon, styles.organizercommitteaddtaskLayout]}
-        contentFit="cover"
-        source={require("../assets/Rectangle 3.png")}
-      />
-      <Image
-        style={[styles.rectangleIcon, styles.organizercommitteaddtaskLayout]}
-        contentFit="cover"
-        source={require("../assets/Rectangle 3.png")}
-      />
-      <Image
-        style={[
-          styles.organizercommitteaddtaskChild2,
-          styles.organizercommitteaddtaskLayout,
-        ]}
-        contentFit="cover"
-        source={require("../assets/Rectangle 3.png")}
-      />
-      <Text style={[styles.dueDate, styles.dueDateTypo]}>Due Date:</Text>
-      <Text style={[styles.description, styles.assignedToTypo]}>
-        Description:
-      </Text>
-      <Text style={[styles.assignedTo, styles.assignedToTypo]}>
-        Assigned To:
-      </Text>
-      <View
-        style={[styles.rectangleView, styles.organizercommitteaddtaskShadowBox]}
-      />
-      <Text style={styles.submit}>Submit</Text>
+      <View style={[styles.adminloginChild, styles.rectangleViewShadowBox]}>
+      <Text style={[styles.eventOrganizer]}>Assign Task</Text>
+        <View style={styles.field}>
+     
+            <TextInput
+          style={[styles.inputField, styles.usernameInput]}
+          placeholder="Task Name "
+          placeholderTextColor="#c9c9c9" 
+        />
+        </View>
+        <View style={styles.field}>
+            <TextInput
+          style={[styles.inputField, styles.passwordInput]}
+          placeholder="Due Date"
+          placeholderTextColor="#c9c9c9"
+          secureTextEntry
+        />
+        </View>
+        <View style={styles.field}>
+            <TextInput
+          style={[styles.inputField1, styles.passwordInput]}
+          placeholder="Description"
+          placeholderTextColor="#c9c9c9"
+          multiline
+          secureTextEntry
+        />
+        </View>
+        <View style={styles.field}>
+            <TextInput
+          style={[styles.inputField, styles.passwordInput]}
+          placeholder="Assigned To"
+          placeholderTextColor="#c9c9c9"
+          secureTextEntry
+        />
+        </View>
+        
+        
+        <View style={[styles.buttonContainer]}>
+        <Button  title="Submit" color="#000080" style={styles.btn}>
+          {/* <Text style={styles.loginButtonText}>Login</Text> */}
+        </Button>
+        {/* <TouchableOpacity style={[styles.loginButton, styles.rectangleViewShadowBox]} onPress={handleLogin}>
+        </TouchableOpacity> */}
+        </View>
+        
+      </View>
+      
+      
+      
+      
+      
+      
+      
+      
+      
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  organizercommitteaddtaskShadowBox: {
+  rectangleViewShadowBox: {
+    borderWidth: 1,
+    borderColor: Color.colorBlack,
+    borderStyle: "solid",
+    shadowOpacity: 1,
+    elevation: 4,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowColor: "rgba(0, 0, 0, 0.25)",
+    borderRadius: Border.br_6xl,
+    position: "absolute",
+    paddingTop:100
+  },
+  
+  adminloginPosition: {
+    width: 221,
+    left: 90,
+    position: "absolute",
+  },
+  inputField1:{
+    height: 80,
+    borderRadius: Border.br_6xl,
+    paddingHorizontal: 10,
+    marginBottom: 15,
+    top:40,
+  },
+  loginTypo: {
+    height: 75,
+    color: Color.colorWhite,
+    fontSize: FontSize.size_17xl,
+    textAlign: "left",
+    fontFamily: FontFamily.itimRegular,
+    position: "absolute",
+  },
+  eventOrganizer:{
+    width: 204,
+    left: 88,
+    top: -50,
+    color:"black",
+    fontWeight:900,
+    fontSize:25,
+  },
+  adminloginChild: {
+    top: 120,
+    left: 28,
+    backgroundColor: Color.colorWhite,
+    width: 358,
+    height: 600,
+  },
+  organizer: {
+    top: 243,
+    left: 129,
+    fontSize: FontSize.size_13xl,
+    color: "#100f0f",
+    width: 150,
+    height: 46,
+    textAlign: "left",
+    fontFamily: FontFamily.itimRegular,
+    position: "absolute",
+  },
+  adminloginItem: {
+    height: 56,
+    top: 328,
+    width: 221,
+    left: 90,
+  },
+  adminloginInner: {
+    height: 49,
+    top: 395,
+  },
+  rectangleView: {
+    left: 124,
+    backgroundColor: Color.colorDarkslateblue_400,
+    width: 155,
+    height: 48,
+    top: 492,
+  },
+  buttonContainer:{
+    display:"flex",
+    justifyContent:"center",
+    width: 120,
+    top: 28,
+    left: 100,
+  },
+  field:{
+backgroundColor:"#000080",
+margin:10
+  },
+  username: {
+    left: 111,
+    height: 43,
+    width: 193,
+    color: Color.colorWhite,
+    fontSize: FontSize.size_17xl,
+    top: 328,
+    textAlign: "left",
+    fontFamily: FontFamily.itimRegular,
+    position: "absolute",
+  },
+  password: {
+    left: 104,
+    width: 193,
+    top: 395,
+  },
+  login: {
+    left: 158,
+    width: 252,
+    top: 492,
+  },
+  adminlogin: {
+    backgroundColor: Color.colorDarkslateblue_200,
+    flex: 1,
+    width: "100%",
+    height: 844,
+    overflow: "hidden",
+  },
+  inputField: {
+    height: 40,
+    borderRadius: Border.br_6xl,
+    paddingHorizontal: 10,
+    marginBottom: 15,
+    top:40,
+  },
+  usernameInput: {
+    top: 8,
+    color:Color.colorWhite,
+    placeholderTextColor:Color.colorWhitesmoke
+    
+  },
+  passwordInput: {
+    top: 8,
+    color:Color.colorWhite,
+  },
+  loginButton: {
+    backgroundColor: Color.colorDarkslateblue_400,
+    width: 155,
+    height: 20,
+    top: 986,
+    margin:"auto",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  loginButtonText: {
+    color: "#000080",
+    fontSize: FontSize.size_17xl,
+    fontFamily: FontFamily.itimRegular,
+    height:100,
+  },
+ 
+  addcommitteform: {
+    width: 393,
+    height: 852,
+    overflow: "hidden",
+    backgroundColor: Color.colorDarkslateblue_200,
+  },
+  btn:{
+    width:70,
+    left:100,
+  },
+  organizereventeaddtaskShadowBox: {
     borderWidth: 1,
     borderColor: Color.colorBlack,
     borderStyle: "solid",
@@ -80,7 +247,7 @@ const styles = StyleSheet.create({
     },
     shadowColor: "rgba(0, 0, 0, 0.25)",
   },
-  organizercommitteaddtaskLayout: {
+  organizereventeaddtaskLayout: {
     height: 73,
     width: 263,
     left: 65,
@@ -119,7 +286,7 @@ const styles = StyleSheet.create({
     height: 69,
     position: "absolute",
   },
-  organizercommitteaddtaskChild: {
+  organizereventeaddtaskChild: {
     top: 140,
     borderRadius: Border.br_9xl,
     backgroundColor: Color.colorWhite,
@@ -138,7 +305,7 @@ const styles = StyleSheet.create({
     shadowColor: "rgba(0, 0, 0, 0.25)",
     position: "absolute",
   },
-  organizercommitteaddtaskItem: {
+  organizereventeaddtaskItem: {
     top: 193,
     backgroundColor: Color.colorDarkslateblue_400,
     borderWidth: 1,
@@ -157,13 +324,13 @@ const styles = StyleSheet.create({
     top: 207,
     left: 73,
   },
-  organizercommitteaddtaskInner: {
+  organizereventeaddtaskInner: {
     top: 292,
   },
   rectangleIcon: {
     top: 389,
   },
-  organizercommitteaddtaskChild2: {
+  organizereventeaddtaskChild2: {
     top: 488,
   },
   dueDate: {
@@ -201,6 +368,13 @@ const styles = StyleSheet.create({
     color: Color.colorWhite,
     fontFamily: FontFamily.irishGroverRegular,
     position: "absolute",
+  },
+  organizereventeaddtask: {
+    flex: 1,
+    width: "100%",
+    height: 852,
+    overflow: "hidden",
+    backgroundColor: Color.colorDarkslateblue_200,
   },
   organizercommitteaddtask: {
     flex: 1,

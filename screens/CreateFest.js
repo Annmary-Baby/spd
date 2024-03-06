@@ -1,11 +1,54 @@
 import * as React from "react";
-import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity, Modal, TextInput, Button } from "react-native";
 import { Image } from "expo-image";
 import { Color, Border, FontSize, FontFamily } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import DatePicker from 'react-native-datepicker';
+import {firebase} from '../firebaseConfig'
 
 const CreateFest = () => {
   const navigation = useNavigation();
+  const [isModalVisible, setModalVisible] = React.useState(false);
+  const [festData, setFestData] = React.useState({
+    festname: "",
+    startdate: "",
+  });
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const handleInputChange = (name, value) => {
+    setFestData({
+      ...festData,
+      [name]: value
+    });
+  };
+
+  const Fest = firebase.firestore().collection('festData');
+
+  const addfest = async() => {
+    // Implement your login logic here
+    await Fest.add(festData).then(()=>{
+        console.log('Data added successfully');
+        setRegistrationData({
+          festname: '',
+          startdate: '',
+      });
+
+      navigation.navigate('CreateFest')
+      console.log('Data added successfully--------');
+      
+      }).catch((error) => {
+          // // Handle errors
+          // console.log("nnnnnnnnnn",error)
+          // Alert.alert("Login Failed", error.message);
+        });
+    
+  };
+  const navigate = ()=>{
+    navigation.navigate('FestDetails')
+  }
   return (
     <View style={styles.createFest}>
       <Text style={styles.goodMorning}>Good Morning</Text>
@@ -13,7 +56,7 @@ const CreateFest = () => {
       <View style={styles.createFestItem} />
       <Text style={[styles.daysLeft, styles.daysTypo]}>11 Days left</Text>
       <Text style={[styles.interfaces, styles.gatewaysTypo]}>Interfaces</Text>
-      <TouchableOpacity onPress={()=>{navigation.navigate('FestDetails')}}>
+      <TouchableOpacity onPress={navigate}>
         <Image
         style={[styles.calendarIcon, styles.calendarIconLayout]}
         contentFit="cover"
@@ -43,14 +86,55 @@ const CreateFest = () => {
         source={require("../assets/Male User.png")}
       />
       <View style={[styles.createFestInner, styles.createShadowBox]} />
-      <TouchableOpacity onPress={()=>{navigation.navigate('CreateFestForm')}}>
+      <TouchableOpacity onPress={toggleModal}>
         <Image
         style={styles.duplicateIcon}
         contentFit="cover"
         source={require("../assets/Duplicate.png")}
       />
       </TouchableOpacity>
-      
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={() => {
+          setModalVisible(!isModalVisible);
+        }}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalHeading}>Create Fest</Text>
+            {/* Fest Name Input */}
+            <TextInput
+              style={styles.input}
+              placeholder="Fest Name"
+              value={festData.festname}
+              onChangeText={(text) => handleInputChange('festname', text)}
+            />
+            {/* Poster Image Input */}
+            <TextInput
+              style={styles.input}
+              placeholder="Poster Image"
+              
+              // Add necessary props for handling the input
+            />
+            {/* Start Date Input */}
+            {/* You can use a date picker library or implement your own */}
+            
+            
+            <TextInput
+              style={styles.input}
+              placeholder="Start Date"
+              
+              value={festData.startdate}
+              onChangeText={(date) => handleInputChange('startdate', date)}
+              // Add necessary props for handling the input
+            />
+            <Button title="Create Fest" onPress={()=>{toggleModal();addfest();}} />
+          </View>
+        </View>
+      </Modal>
+
     </View>
   );
 };
@@ -221,6 +305,33 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 879,
     overflow: "hidden",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    width:300,
+    backgroundColor:  Color.colorDarkslateblue_300,
+    padding: 20,
+    borderRadius: Border.br_6xl,
+    elevation: 5,
+  },
+  modalHeading: {
+    fontSize: FontSize.size_5xl,
+    textAlign: "center",
+    marginBottom: 20,
+    color:Color.colorWhite
+  },
+  input: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginBottom: 15,
+    backgroundColor:Color.colorWhite,
+    padding: 10,
   },
 });
 

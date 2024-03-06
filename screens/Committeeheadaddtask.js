@@ -2,19 +2,18 @@ import * as React from "react";
 import { Text, StyleSheet, View, Button, TextInput } from "react-native";
 import { Image } from "expo-image";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
-import { useNavigation } from "@react-navigation/native";
 
-const Organizereventeaddtask = () => {
-    const navigation = useNavigation();
+const Committeeheadaddtask = () => {
   return (
-    <View style={styles.organizereventeaddtask}>
-      <Text style={styles.assignTask}>Assign Task</Text>
+    <View style={styles.committeeheadaddtask}>
+      <Text style={styles.addTask}>Add Task</Text>
       <Image
         style={styles.tasklistIcon}
         contentFit="cover"
         source={require("../assets/Tasklist-1.png")}
       />
-     <View style={[styles.adminloginChild, styles.rectangleViewShadowBox]}>
+
+<View style={[styles.adminloginChild, styles.rectangleViewShadowBox]}>
       <Text style={[styles.eventOrganizer]}>Assign Task</Text>
         <View style={styles.field}>
      
@@ -61,11 +60,9 @@ const Organizereventeaddtask = () => {
         
       </View>
      
-      
+    
       
      
-      
-      
       
       
     </View>
@@ -73,6 +70,33 @@ const Organizereventeaddtask = () => {
 };
 
 const styles = StyleSheet.create({
+  
+  addTask: {
+    top: 45,
+    fontSize: FontSize.size_17xl,
+    width: 274,
+    height: 54,
+    textAlign: "left",
+    color: Color.colorWhite,
+    fontFamily: FontFamily.irishGroverRegular,
+    left: 29,
+    position: "absolute",
+  },
+  tasklistIcon: {
+    top: 30,
+    left: 260,
+    width: 86,
+    height: 69,
+    position: "absolute",
+  },
+  
+  committeeheadaddtask: {
+    flex: 1,
+    width: "100%",
+    height: 862,
+    overflow: "hidden",
+    backgroundColor: Color.colorDarkslateblue_200,
+  },
   rectangleViewShadowBox: {
     borderWidth: 1,
     borderColor: Color.colorBlack,
@@ -370,13 +394,6 @@ margin:10
     fontFamily: FontFamily.irishGroverRegular,
     position: "absolute",
   },
-  organizereventeaddtask: {
-    flex: 1,
-    width: "100%",
-    height: 852,
-    overflow: "hidden",
-    backgroundColor: Color.colorDarkslateblue_200,
-  },
 });
 
-export default Organizereventeaddtask;
+export default Committeeheadaddtask;

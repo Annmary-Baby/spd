@@ -24,7 +24,7 @@ const EventDetails = () => {
 <Image
         style={styles.tasklistIcon}
         contentFit="cover"
-        source={require("../assets/Tasklist.png")}
+        source={require("../assets/Tasklist-1.png")}
       />
       </TouchableOpacity>
       

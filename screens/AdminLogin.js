@@ -1,10 +1,13 @@
 import * as React from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Alert, Button } from "react-native";
 import { Image } from "expo-image";
 import {firebase} from '../firebaseConfig'
 import { Color, Border, FontSize, FontFamily } from "../GlobalStyles";
+import { AlignCenter } from "react-native-feather";
+import { useNavigation } from "@react-navigation/native";
 
 const AdminLogin = () => {
+  const navigation = useNavigation();
     const [registrationData, setRegistrationData] = React.useState({
         username: "",
         password: "",
@@ -29,23 +32,29 @@ const handleInputChange = (name, value) => {
           username: '',
           password: '',
       });
+      navigation.navigate('CreateFest')
       console.log('Data added successfully--------');
-        Keyboard.dismiss();
+      
       }).catch((error) => {
-          // Handle errors
-          console.log("nnnnnnnnnn",error)
-          Alert.alert("Login Failed", error.message);
+          // // Handle errors
+          // console.log("nnnnnnnnnn",error)
+          // Alert.alert("Login Failed", error.message);
         });
     
   };
 
   return (
+    
     <View style={styles.adminlogin}>
+      
       <View style={[styles.adminloginChild, styles.rectangleViewShadowBox]}>
+      <Text style={[styles.eventOrganizer]}>Event Organizer</Text>
         <View style={styles.field}>
+     
             <TextInput
           style={[styles.inputField, styles.usernameInput]}
           placeholder="Username"
+          placeholderTextColor="#c9c9c9" 
           value={registrationData.username}
           onChangeText={(text) => handleInputChange('username', text)}
         />
@@ -54,14 +63,19 @@ const handleInputChange = (name, value) => {
             <TextInput
           style={[styles.inputField, styles.passwordInput]}
           placeholder="Password"
+          placeholderTextColor="#c9c9c9"
           secureTextEntry
           value={registrationData.password}
           onChangeText={(text) => handleInputChange('password', text)}
         />
         </View>
-        <TouchableOpacity style={[styles.loginButton, styles.rectangleViewShadowBox]} onPress={handleLogin}>
-          <Text style={styles.loginButtonText} onPress={handleLogin}>Login</Text>
-        </TouchableOpacity>
+        <View style={[styles.buttonContainer]}>
+        <Button onPress={handleLogin} title="Login" color="#000080">
+          {/* <Text style={styles.loginButtonText}>Login</Text> */}
+        </Button>
+        {/* <TouchableOpacity style={[styles.loginButton, styles.rectangleViewShadowBox]} onPress={handleLogin}>
+        </TouchableOpacity> */}
+        </View>
       </View>
     </View>
   );
@@ -84,6 +98,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     paddingTop:100
   },
+
   adminloginPosition: {
     width: 221,
     left: 90,
@@ -96,6 +111,14 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontFamily: FontFamily.itimRegular,
     position: "absolute",
+  },
+  eventOrganizer:{
+    width: 204,
+    left: 38,
+    top: -50,
+    color:"black",
+    fontWeight:900,
+    fontSize:25,
   },
   adminloginChild: {
     top: 171,
@@ -131,6 +154,13 @@ const styles = StyleSheet.create({
     width: 155,
     height: 48,
     top: 492,
+  },
+  buttonContainer:{
+    display:"flex",
+    justifyContent:"center",
+    width: 85,
+    top: 28,
+    left: 75,
   },
   field:{
 backgroundColor:"#000080",
@@ -169,10 +199,12 @@ margin:10
     borderRadius: Border.br_6xl,
     paddingHorizontal: 10,
     marginBottom: 15,
+    top:40,
   },
   usernameInput: {
     top: 8,
     color:Color.colorWhite,
+    
   },
   passwordInput: {
     top: 8,
@@ -181,13 +213,14 @@ margin:10
   loginButton: {
     backgroundColor: Color.colorDarkslateblue_400,
     width: 155,
-    height: 48,
-    top: 492,
+    height: 20,
+    top: 286,
+    margin:"auto",
     justifyContent: "center",
     alignItems: "center",
   },
   loginButtonText: {
-    color: Color.colorWhite,
+    color: "#000080",
     fontSize: FontSize.size_17xl,
     fontFamily: FontFamily.itimRegular,
   },

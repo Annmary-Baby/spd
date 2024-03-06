@@ -1,13 +1,5 @@
-import * as React from "react";
-import { StyleSheet, View, Text, TextInput, Button } from "react-native";
-import { Image } from "expo-image";
-import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
-
-const AddCommitteForm = () => {
-  return (
-    <View style={styles.addcommitteform}>
-      <View style={[styles.adminloginChild, styles.rectangleViewShadowBox]}>
-      <Text style={[styles.createcommittee]}>Create Committee</Text>
+<View style={[styles.adminloginChild, styles.rectangleViewShadowBox]}>
+      <Text style={[styles.eventOrganizer]}>Event Organizer</Text>
         <View style={styles.field}>
      
             <TextInput
@@ -73,13 +65,9 @@ const AddCommitteForm = () => {
       </View>
      
      
-    </View>
-  );
-};
 
-const styles = StyleSheet.create({
- 
-  rectangleViewShadowBox: {
+
+      rectangleViewShadowBox: {
     borderWidth: 1,
     borderColor: Color.colorBlack,
     borderStyle: "solid",
@@ -109,13 +97,13 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.itimRegular,
     position: "absolute",
   },
-  createcommittee:{
+  eventOrganizer:{
     width: 204,
-    left: 80,
+    left: 88,
     top: -50,
     color:"black",
     fontWeight:900,
-    fontSize:24,
+    fontSize:25,
   },
   adminloginChild: {
     top: 61,
@@ -241,7 +229,4 @@ margin:10
   },
   btn:{
     width:510,
-  }
-});
-
-export default AddCommitteForm;
+  },

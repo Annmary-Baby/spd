@@ -28,7 +28,7 @@ const OrganizerCommitteeDetails = () => {
       <Image
         style={styles.tasklistIcon}
         contentFit="cover"
-        source={require("../assets/Tasklist.png")}
+        source={require("../assets/Tasklist-1.png")}
       />
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>{navigation.navigate('Organizercommittecompletedtask')}}>

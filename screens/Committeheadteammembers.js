@@ -1,25 +1,27 @@
 import * as React from "react";
-import { StyleSheet, View, Text, TextInput, Button } from "react-native";
+import { Text, StyleSheet, View, Button, TextInput } from "react-native";
 import { Image } from "expo-image";
-import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
+import { Color, FontSize, FontFamily, Border } from "../GlobalStyles";
 
-const AddCommitteForm = () => {
+const Committeheadteammembers = () => {
   return (
-    <View style={styles.addcommitteform}>
+    <View style={styles.committeheadteammembers}>
+      <Text style={styles.addMembers}>Add members</Text>
+      <Image
+        style={styles.peopleIcon}
+        contentFit="cover"
+        source={require("../assets/People.png")}
+      />
       <View style={[styles.adminloginChild, styles.rectangleViewShadowBox]}>
-      <Text style={[styles.createcommittee]}>Create Committee</Text>
+      <Text style={[styles.eventOrganizer]}>Add Members</Text>
         <View style={styles.field}>
      
-            <TextInput
-          style={[styles.inputField, styles.usernameInput]}
-          placeholder="Committe Name"
-          placeholderTextColor="#c9c9c9" 
-        />
+            
         </View>
         <View style={styles.field}>
             <TextInput
           style={[styles.inputField, styles.passwordInput]}
-          placeholder="Committee Head"
+          placeholder="Name"
           placeholderTextColor="#c9c9c9"
           secureTextEntry
         />
@@ -57,28 +59,41 @@ const AddCommitteForm = () => {
         />
         </View>
         <View style={[styles.buttonContainer]}>
-        <Button  title="Login" color="#000080" style={styles.btn}>
+        <Button  title="Submit" color="#000080" style={styles.btn}>
           {/* <Text style={styles.loginButtonText}>Login</Text> */}
         </Button>
         {/* <TouchableOpacity style={[styles.loginButton, styles.rectangleViewShadowBox]} onPress={handleLogin}>
         </TouchableOpacity> */}
         </View>
-        <View style={[styles.buttonContainer1]}>
-        <Button  title="Generate code" color="#000080" style={styles.btn}>
-          {/* <Text style={styles.loginButtonText}>Login</Text> */}
-        </Button>
-        {/* <TouchableOpacity style={[styles.loginButton, styles.rectangleViewShadowBox]} onPress={handleLogin}>
-        </TouchableOpacity> */}
-        </View>
+        
       </View>
      
-     
+      
+      
     </View>
   );
 };
 
 const styles = StyleSheet.create({
- 
+  
+  addMembers: {
+    top: 45,
+    fontSize: FontSize.size_17xl,
+    width: 274,
+    height: 54,
+    textAlign: "left",
+    color: Color.colorWhite,
+    fontFamily: FontFamily.irishGroverRegular,
+    left: 29,
+    position: "absolute",
+  },
+  peopleIcon: {
+    top: 9,
+    left: 283,
+    width: 90,
+    height: 90,
+    position: "absolute",
+  },
   rectangleViewShadowBox: {
     borderWidth: 1,
     borderColor: Color.colorBlack,
@@ -109,20 +124,20 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.itimRegular,
     position: "absolute",
   },
-  createcommittee:{
+  eventOrganizer:{
     width: 204,
-    left: 80,
+    left: 88,
     top: -50,
     color:"black",
     fontWeight:900,
-    fontSize:24,
+    fontSize:25,
   },
   adminloginChild: {
-    top: 61,
-    left: 16,
+    top: 150,
+    left: 26,
     backgroundColor: Color.colorWhite,
     width: 358,
-    height: 712,
+    height: 650,
   },
   organizer: {
     top: 243,
@@ -157,7 +172,7 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     width: 120,
     top: 28,
-    left: 50,
+    left: 120,
   },
   field:{
 backgroundColor:"#000080",
@@ -230,18 +245,19 @@ margin:10
     overflow: "hidden",
     backgroundColor: Color.colorDarkslateblue_200,
   },
-  buttonContainer1:{
-    display:"flex",
-    justifyContent:"center",
-    width: 120,
-    top: -9,
-    left: 200,
-    
-    
-  },
+  
   btn:{
     width:510,
-  }
+    left:80,
+  },
+ 
+  committeheadteammembers: {
+    flex: 1,
+    width: "100%",
+    height: 852,
+    overflow: "hidden",
+    backgroundColor: Color.colorDarkslateblue_200,
+  },
 });
 
-export default AddCommitteForm;
+export default Committeheadteammembers;
